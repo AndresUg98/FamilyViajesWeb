@@ -7,6 +7,10 @@
   --line: #dceced;
   --font-sans: Arial, Helvetica, sans-serif;
 }
+
+.news-section {
+  background: var(--surface-soft);
+}
 * {
   box-sizing: border-box;
 }
@@ -204,26 +208,6 @@ p {
 .lime:hover {
   background: #e1f6ac;
 }
-.hero-bottom {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  color: #e4ede7;
-  font-size: 10px;
-  letter-spacing: 0.3px;
-}
-.hero-bottom span,
-.hero-bottom a {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.hero-bottom a {
-  margin-right: 80px;
-}
 .trust-strip {
   border-bottom: 1px solid var(--line);
   padding: 27px 0;
@@ -239,11 +223,6 @@ p {
   gap: 10px;
   font-size: 11px;
   color: #5c6b62;
-}
-.trust-strip svg {
-  width: 19px;
-  height: 19px;
-  stroke-width: 1.4;
 }
 .eyebrow {
   display: block;
@@ -414,43 +393,6 @@ h2 {
   object-fit: cover;
   border-radius: 8px;
 }
-.image-note {
-  position: absolute;
-  bottom: 23px;
-  left: 23px;
-  background: #fffef4f2;
-  border-radius: 5px;
-  padding: 18px 23px;
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  font-size: 11px;
-  line-height: 1.7;
-}
-.image-note strong {
-  font-weight: 600;
-}
-.about-stamp {
-  position: absolute;
-  right: -30px;
-  top: 27px;
-  background: var(--lime);
-  border-radius: 50%;
-  height: 106px;
-  width: 106px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 6px;
-  letter-spacing: 1px;
-  line-height: 2.2;
-  text-align: center;
-  transform: rotate(12deg);
-}
-.about-stamp br + * {
-  font-size: 20px;
-}
 .about-copy h2 {
   margin-bottom: 25px;
 }
@@ -465,37 +407,19 @@ h2 {
   margin: 23px 0 28px;
 }
 .about-checks span {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 11px;
+  position: relative;
+  padding-left: 14px;
+  font-size: 14px;
 }
-.about-checks svg {
-  width: 16px;
-  height: 16px;
-  color: #6f9153;
-}
-.quote-band {
-  background: var(--ink);
-  color: #f7f6eb;
-  text-align: center;
-  padding: 54px 20px;
-}
-.quote-band span {
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #c2d0be;
-}
-.quote-band h2 {
-  font-size: 41px;
-  margin: 10px 0 12px;
-}
-.quote-band em {
-  color: var(--lime);
-}
-.quote-band p {
-  font-size: 11px;
-  color: #c2d0be;
+.about-checks span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lime);
 }
 .news-grid {
   display: grid;
@@ -551,39 +475,12 @@ h2 {
   color: var(--muted);
   line-height: 1.9;
 }
-.contact-section {
-  background: #eef1e6;
-  padding: 75px 0;
-}
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-}
-.contact-grid h2 {
-  font-size: 43px;
-  margin-bottom: 20px;
-}
-.contact-grid p {
-  font-size: 12px;
-  color: #75806c;
-}
-.contact-note {
-  display: block;
-  font-size: 10px;
-  margin-top: 25px;
-}
 form label {
   display: flex;
   flex-direction: column;
   font-size: 10px;
   gap: 9px;
   margin-bottom: 17px;
-}
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
 }
 input,
 textarea,
@@ -819,8 +716,7 @@ footer {
   .header-cta {
     padding: 12px;
   }
-  .about,
-  .contact-grid {
+  .about {
     gap: 55px;
   }
   .section-heading > p {
@@ -837,9 +733,6 @@ footer {
   }
   .service h3 {
     font-size: 18px;
-  }
-  .hero-bottom {
-    left: 0;
   }
   .news-date {
     flex-wrap: wrap;
@@ -927,14 +820,7 @@ footer {
     padding: 17px;
     gap: 16px;
   }
-  .hero-bottom {
-    font-size: 9px;
-    bottom: 25px;
-    max-width: 250px;
-  }
-  .hero-bottom > a {
-    display: none;
-  }
+
   .trust-strip {
     padding: 23px 0;
   }
@@ -946,10 +832,6 @@ footer {
   .trust-strip span {
     font-size: 9px;
     gap: 8px;
-  }
-  .trust-strip svg {
-    width: 17px;
-    flex-shrink: 0;
   }
   .section {
     padding-top: 60px;
@@ -1017,24 +899,11 @@ footer {
     height: 360px;
     margin-right: 15px;
   }
-  .about-stamp {
-    right: -15px;
-    top: 22px;
-    width: 93px;
-    height: 93px;
-  }
   .about-copy h2 {
     font-size: 34px;
   }
   .about-copy > p {
     font-size: 13px;
-  }
-  .quote-band {
-    padding: 45px 0;
-  }
-  .quote-band h2 {
-    font-size: 33px;
-    line-height: 1.3;
   }
   .news-grid {
     grid-template-columns: 1fr;
@@ -1052,27 +921,7 @@ footer {
   .news-card > p {
     font-size: 12px;
   }
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-  .contact-section {
-    padding: 55px 0;
-  }
-  .contact-grid h2 {
-    font-size: 39px;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .contact-grid input,
-  .contact-grid textarea {
-    font-size: 13px;
-  }
-  .contact-grid label {
-    font-size: 11px;
-  }
+
   .footer-top {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -1134,6 +983,7 @@ footer {
     flex-wrap: wrap;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1142,5 +992,351 @@ footer {
   *:before,
   *:after {
     transition: none !important;
+  }
+}
+
+.whatsapp-float {
+  position: fixed;
+  z-index: 50;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #20b9bd;
+  color: #fff;
+  box-shadow: 0 8px 24px #173d4238;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+  background: #159fa5;
+}
+.whatsapp-float svg {
+  width: 31px;
+  height: 31px;
+  fill: currentColor;
+}
+@media (max-width: 760px) {
+  .whatsapp-float {
+    right: 17px;
+    bottom: 17px;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* Material inspired refresh: clear hierarchy, calm surfaces and brand actions. */
+:root {
+  --ink: #173d42;
+  --muted: #5d777b;
+  --primary: #13b9c1;
+  --primary-dark: #079aa4;
+  --lime: var(--primary);
+  --cream: #f4fbfb;
+  --surface-soft: #f4fbfb;
+  --line: #dcebed;
+  --elevation-1: 0 2px 8px rgb(23 61 66 / 7%);
+  --elevation-2: 0 10px 28px rgb(23 61 66 / 13%);
+}
+
+body {
+  color: var(--ink);
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 1px 8px rgb(23 61 66 / 6%);
+  backdrop-filter: blur(14px);
+}
+
+.nav {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav a:hover,
+.text-link:hover {
+  color: var(--primary-dark);
+}
+
+.button {
+  min-height: 52px;
+  padding: 15px 24px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  box-shadow: var(--elevation-1);
+}
+
+.button:hover {
+  background: var(--primary-dark);
+  box-shadow: var(--elevation-2);
+  transform: translateY(-1px);
+}
+
+.header-cta {
+  min-height: 46px;
+  font-size: 13px;
+}
+
+.hero h1 {
+  font-size: clamp(54px, 6vw, 84px);
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+.hero h1 em {
+  color: #9ce8e8;
+}
+
+.lime,
+.lime:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.trust-strip {
+  background: var(--surface-soft);
+}
+
+.trust-strip span {
+  font-size: 14px;
+}
+
+.eyebrow {
+  color: var(--primary-dark);
+  font-size: 10px;
+  letter-spacing: 1.7px;
+}
+
+.section {
+  padding-top: 104px;
+  padding-bottom: 104px;
+}
+
+h2 {
+  font-size: clamp(34px, 3.4vw, 46px);
+}
+
+.section-heading > p {
+  font-size: 15px;
+}
+
+.services {
+  gap: 16px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.service,
+.service + .service {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--elevation-1);
+}
+
+.service {
+  padding: 32px;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.service:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--elevation-2);
+}
+
+.service h3 {
+  font-size: 23px;
+}
+
+.service p,
+.about-copy > p,
+.news-card > p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.service a {
+  font-size: 13px;
+  color: var(--primary-dark);
+}
+
+.destinations {
+  background: var(--surface-soft);
+}
+
+.destination {
+  border-radius: 20px;
+}
+
+.destination-label,
+.news-image > span {
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 12px;
+}
+
+.destination .eyebrow {
+  color: #e4fbfa;
+}
+
+.about-image,
+.about-image > img,
+.article-image {
+  border-radius: 20px;
+}
+
+.about-copy > p {
+  margin-bottom: 18px;
+}
+
+.about-checks span {
+  font-size: 15px;
+}
+
+.news-image {
+  border-radius: 16px;
+}
+
+.news-date,
+.article-header > span:last-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.news-card h3 {
+  font-size: 24px;
+}
+
+footer {
+  background: var(--surface-soft);
+}
+
+.footer-top p,
+.footer-top > div > a:not(.logo) {
+  font-size: 14px;
+}
+
+.footer-bottom {
+  font-size: 12px;
+}
+
+.article-body > p {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.article-cta,
+.admin-panel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-soft);
+  box-shadow: var(--elevation-1);
+}
+
+.admin-panel input,
+.admin-panel textarea,
+.admin-panel select {
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.admin-panel label {
+  font-size: 14px;
+}
+
+.admin-item button {
+  background: var(--primary);
+  border-color: var(--primary);
+  border-radius: 999px;
+  color: #fff;
+}
+
+.admin-item button:hover {
+  background: var(--primary-dark);
+  color: #fff;
+}
+
+.whatsapp-float {
+  background: var(--primary);
+}
+
+.whatsapp-float:hover {
+  background: var(--primary-dark);
+}
+
+@media (max-width: 760px) {
+  .header-cta {
+    gap: 10px;
+    min-height: 38px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .trust-strip span {
+    font-size: 12px;
+  }
+
+  .service + .service {
+    border-top: 1px solid var(--line);
+  }
+
+  .news-card h3 {
+    font-size: 22px;
+  }
+
+  .article-body > p {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .header-inner {
+    gap: 16px;
+  }
+
+  .logo {
+    width: 190px;
+  }
+
+  .nav {
+    gap: 14px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .header-cta {
+    gap: 12px;
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 }

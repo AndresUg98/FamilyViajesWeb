@@ -1,37 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  ArrowDown,
-  Plane,
-  Hotel,
-  Route,
-  ShieldCheck,
-  HeartHandshake,
-  Globe2,
-  Sparkles,
-  MapPin,
-  Check,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import NewsCard from "@/components/news-card";
-import Contact from "@/components/contact";
 import { getNews } from "@/lib/news";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 export const revalidate = 60;
 const services = [
   {
-    icon: Plane,
     title: "Vuelos que te acercan",
     text: "Encontramos las mejores opciones para conectar contigo y con tu próximo destino.",
     tag: "Vuelos nacionales e internacionales",
   },
   {
-    icon: Hotel,
     title: "Tu lugar en el mundo",
     text: "Desde una escapada acogedora hasta ese resort frente al mar. Tú eliges cómo descansar.",
     tag: "Hoteles y hospedaje",
   },
   {
-    icon: Route,
     title: "Viajes tan únicos como tú",
     text: "Armamos cada detalle de tu aventura, para viajar en familia, en pareja o a tu propio ritmo.",
     tag: "Paquetes y experiencias a medida",
@@ -64,37 +49,22 @@ export default async function Home() {
             Hay viajes que se convierten en tus mejores historias. <br />
             Nosotros te ayudamos a comenzar la siguiente.
           </p>
-          <Link href="#contacto" className="button lime">
+          <a
+            href={getWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button lime"
+          >
             Encuentra tu próxima aventura <ArrowUpRight size={19} />
-          </Link>
-          <div className="hero-bottom">
-            <span>
-              <MapPin size={15} /> Tu próximo destino: un recuerdo inolvidable
-            </span>
-            <Link href="#servicios">
-              Sigue explorando <ArrowDown size={16} />
-            </Link>
-          </div>
+          </a>
         </div>
       </section>
       <section className="trust-strip">
         <div className="container">
-          <span>
-            <Globe2 />
-            100% online, 100% contigo
-          </span>
-          <span>
-            <HeartHandshake />
-            Atención que se siente cercana
-          </span>
-          <span>
-            <ShieldCheck />
-            Cada detalle, en buenas manos
-          </span>
-          <span>
-            <Sparkles />
-            Experiencias a tu medida
-          </span>
+          <span>100% online, 100% contigo</span>
+          <span>Atención que se siente cercana</span>
+          <span>Cada detalle, en buenas manos</span>
+          <span>Experiencias a tu medida</span>
         </div>
       </section>
       <section id="servicios" className="section container">
@@ -115,71 +85,43 @@ export default async function Home() {
           {services.map((s, i) => (
             <div className="service" key={s.title}>
               <div className="service-top">
-                <s.icon size={29} strokeWidth={1.3} />
                 <span>0{i + 1}</span>
               </div>
               <h3>{s.title}</h3>
               <p>{s.text}</p>
-              <Link href="#contacto">
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {s.tag}
                 <ArrowUpRight size={17} />
-              </Link>
+              </a>
             </div>
           ))}
         </div>
       </section>
-      <section className="destinations section">
-        <div className="container">
+      <section className="news-section">
+        <div className="container section">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">UN POCO DE INSPIRACIÓN</span>
+              <span className="eyebrow">IDEAS PARA TU PRÓXIMO SÍ</span>
               <h2>
-                ¿A dónde te lleva tu <em>curiosidad?</em>
+                Historias que invitan a <em>salir.</em>
               </h2>
             </div>
-            <Link href="#contacto" className="text-link">
-              Encuentra tu destino <ArrowUpRight size={18} />
+            <Link href="/noticias" className="text-link">
+              Todas las noticias <ArrowUpRight size={18} />
             </Link>
           </div>
-          <div className="destination-grid">
-            {[
-              {
-                name: "El mar siempre es buena idea",
-                place: "PLAYAS & CARIBE",
-                image: "caribe",
-                label: "Un respiro frente al mar",
-              },
-              {
-                name: "Lejos de la rutina. Cerca de ti.",
-                place: "ESCAPADAS POR MÉXICO",
-                image: "mexico",
-                label: "Redescubre lo nuestro",
-              },
-              {
-                name: "Momentos que se quedan",
-                place: "AVENTURAS EN FAMILIA",
-                image: "familia",
-                label: "Juntos, a donde sea",
-              },
-            ].map((d) => (
-              <Link href="#contacto" className="destination" key={d.image}>
-                <Image
-                  src={`/images/${d.image}.jpg`}
-                  alt={d.name}
-                  fill
-                  sizes="(max-width: 700px) 100vw, 33vw"
-                />
-                <span className="destination-label">{d.label}</span>
-                <div>
-                  <span className="eyebrow">{d.place}</span>
-                  <h3>{d.name}</h3>
-                </div>
-                <span className="destination-arrow">
-                  <ArrowUpRight />
-                </span>
-              </Link>
+          <div className="news-grid">
+            {news.slice(0, 3).map((a) => (
+              <NewsCard key={a.id} article={a} />
             ))}
           </div>
+          {!news.length && (
+            <p>Pronto compartiremos nuevas historias y destinos.</p>
+          )}
         </div>
       </section>
       <section id="nosotros" className="section container about">
@@ -190,19 +132,6 @@ export default async function Home() {
             fill
             sizes="(max-width: 700px) 100vw, 45vw"
           />
-          <div className="image-note">
-            <Sparkles size={26} />
-            <span>
-              Viajar se disfruta más
-              <br />
-              <strong>cuando alguien te acompaña.</strong>
-            </span>
-          </div>
-          <span className="about-stamp">
-            HECHO CON CALMA
-            <br />✳<br />
-            VIVIDO CON EMOCIÓN
-          </span>
         </div>
         <div className="about-copy">
           <span className="eyebrow">HOLA, SOMOS FAMILY VIAJES</span>
@@ -221,55 +150,20 @@ export default async function Home() {
             tuya, de principio a fin.
           </p>
           <div className="about-checks">
-            <span>
-              <Check />
-              Asesoría cercana y personalizada
-            </span>
-            <span>
-              <Check />
-              Opciones para tu estilo y presupuesto
-            </span>
-            <span>
-              <Check />
-              Acompañamiento en cada paso
-            </span>
+            <span>Asesoría cercana y personalizada</span>
+            <span>Opciones para tu estilo y presupuesto</span>
+            <span>Acompañamiento en cada paso</span>
           </div>
-          <Link className="text-link" href="#contacto">
+          <a
+            className="text-link"
+            href={getWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Conversemos sobre tu viaje <ArrowUpRight size={18} />
-          </Link>
+          </a>
         </div>
       </section>
-      <section className="quote-band">
-        <div className="container">
-          <span>Un destino se visita.</span>
-          <h2>
-            Un buen viaje <em>se queda contigo.</em> ✳
-          </h2>
-          <p>Hagamos espacio para nuevos recuerdos.</p>
-        </div>
-      </section>
-      <section className="section container">
-        <div className="section-heading">
-          <div>
-            <span className="eyebrow">IDEAS PARA TU PRÓXIMO SÍ</span>
-            <h2>
-              Historias que invitan a <em>salir.</em>
-            </h2>
-          </div>
-          <Link href="/noticias" className="text-link">
-            Todas las noticias <ArrowUpRight size={18} />
-          </Link>
-        </div>
-        <div className="news-grid">
-          {news.slice(0, 3).map((a) => (
-            <NewsCard key={a.id} article={a} />
-          ))}
-        </div>
-        {!news.length && (
-          <p>Pronto compartiremos nuevas historias y destinos.</p>
-        )}
-      </section>
-      <Contact />
     </main>
   );
 }

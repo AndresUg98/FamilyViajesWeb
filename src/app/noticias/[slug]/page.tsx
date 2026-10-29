@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticle } from "@/lib/news";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 export const revalidate = 60;
 export async function generateMetadata({
   params,
@@ -60,9 +61,16 @@ export default async function Article({
           ))}
         <div className="article-cta">
           <h2>¿Lo empezamos a planear?</h2>
-          <Link href="/#contacto" className="button">
+          <a
+            href={getWhatsAppUrl(
+              "Hola, Family Viajes. Leí su artículo y quiero planear un viaje.",
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button"
+          >
             Hablemos de tu viaje ↗
-          </Link>
+          </a>
         </div>
       </div>
     </main>

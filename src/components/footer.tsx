@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./header";
 import { ArrowUpRight } from "lucide-react";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 export default function Footer() {
   return (
     <footer>
@@ -26,9 +27,9 @@ export default function Footer() {
             <br />
             Atención personal, estés donde estés.
           </p>
-          <Link href="/#contacto">
+          <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
             Hablemos de tu próximo viaje <ArrowUpRight size={14} />
-          </Link>
+          </a>
         </div>
       </div>
       <div className="container footer-bottom">

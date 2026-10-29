@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import WhatsAppButton from "@/components/whatsapp-button";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
@@ -20,6 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Header />
         {children}
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
